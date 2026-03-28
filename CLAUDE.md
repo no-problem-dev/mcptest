@@ -72,15 +72,33 @@ Each agent in `.claude/agents/` follows the CRISP format:
 - **S**teps — execution procedure and output format
 - **P**roof — verification checklist
 
+| Agent | File | Role | Phase |
+|-------|------|------|-------|
+| CEO | `ceo.md` | Team Leader — final decisions & vision | All |
+| Legal Counsel | `legal-counsel.md` | Legal risk review — APPROVE/CONDITIONAL/REJECT | 1–3 |
+| **Devil's Advocate** | **`devils-advocate.md`** | **Structured critic — challenges assumptions, surfaces fatal flaws** | **1–3** |
+| Market Researcher | `market-researcher.md` | Competitor & market analysis | 1 |
+| Trend Analyst | `trend-analyst.md` | Trend & timing analysis | 1 |
+| UX Researcher | `ux-researcher.md` | User pain points & JTBD | 1 |
+| Tech Lead | `tech-lead.md` | Architecture & tech stack | 2–4 |
+| Developer | `developer.md` | Implementation estimation | 2–4 |
+| Product Manager | `product-manager.md` | Requirements & personas | 3–4 |
+| Product Designer | `product-designer.md` | UI/UX design | 2–4 |
+| Marketer | `marketer.md` | Marketing & launch strategy | 2–3 |
+| Business Analyst | `business-analyst.md` | Business model design | 2–3 |
+
 ## Output Structure (Generated at Runtime)
 
 ```
 docs/                              # Phase deliverables
 ├── phase1-legal-screening.md      # Legal initial screening (TL0)
+├── phase1-devils-advocate.md      # Devil's Advocate critique of research (TD1)
 ├── phase1-*.md                    # Research outputs
 ├── phase2-legal-review.md         # Legal compliance review (TL1)
+├── phase2-devils-advocate.md      # Devil's Advocate critique of architecture (TD2)
 ├── phase2-*.md                    # Architecture and design outputs
 ├── phase3-legal-final-review.md   # Legal final review (TL2)
+├── phase3-devils-advocate.md      # Devil's Advocate final critique of MVP (TD3)
 ├── phase3-*.md                    # Product definition outputs
 └── phase4-*.md                    # Implementation-ready specs
 
