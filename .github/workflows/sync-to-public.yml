@@ -22,7 +22,7 @@ jobs:
 
           # Clone public repo
           git clone --depth=1 \
-            https://x-access-token:${PUBLIC_REPO_PAT}@github.com/ricker-w/mcptest.git \
+            https://x-access-token:${PUBLIC_REPO_PAT}@github.com/no-problem-dev/mcptest.git \
             /tmp/public-repo
 
           # Sync files excluding private dirs
