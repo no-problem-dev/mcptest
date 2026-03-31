@@ -1,0 +1,43 @@
+name: Sync to Public OSS Repo
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout private repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to public OSS repo
+        env:
+          PUBLIC_REPO_PAT: ${{ secrets.PUBLIC_REPO_PAT }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Clone public repo
+          git clone --depth=1 \
+            https://x-access-token:${PUBLIC_REPO_PAT}@github.com/ricker-w/mcptest.git \
+            /tmp/public-repo
+
+          # Sync files excluding private dirs (.claude/ is already gitignored)
+          rsync -av --delete \
+            --exclude='.git' \
+            --exclude='docs/' \
+            --exclude='logs/' \
+            ./ /tmp/public-repo/
+
+          # Commit and push if there are changes
+          cd /tmp/public-repo
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to sync."
+          else
+            git commit -m "chore: sync from private repo [skip ci]"
+            git push origin main
+          fi
