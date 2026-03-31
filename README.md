@@ -1,6 +1,6 @@
 # mcptest
 
-[![npm version](https://badge.fury.io/js/mcptest.svg)](https://badge.fury.io/js/mcptest)
+[![npm version](https://badge.fury.io/js/%40ricker-np%2Fmcptest.svg)](https://badge.fury.io/js/%40ricker-np%2Fmcptest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Zero-config test runner for MCP (Model Context Protocol) servers**
@@ -22,7 +22,7 @@
 
 ```bash
 # Global install
-npm install -g mcptest
+npm install -g @ricker-np/mcptest
 
 # Or use directly with npx
 npx mcptest run
@@ -36,7 +36,7 @@ npx mcptest run
 
 ```bash
 cd my-mcp-server
-npm install --save-dev mcptest
+npm install --save-dev @ricker-np/mcptest
 ```
 
 **Step 2: Run mcptest**
@@ -124,7 +124,7 @@ Initialize a `mcptest.config.ts` configuration file in the current directory.
 Create `mcptest.config.ts` in your project root to override defaults:
 
 ```typescript
-import type { McptestConfig } from 'mcptest';
+import type { McptestConfig } from '@ricker-np/mcptest';
 
 export default {
   server: 'node dist/index.js',
