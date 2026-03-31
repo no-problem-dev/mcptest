@@ -25,9 +25,10 @@ jobs:
             https://x-access-token:${PUBLIC_REPO_PAT}@github.com/ricker-w/mcptest.git \
             /tmp/public-repo
 
-          # Sync files excluding private dirs (.claude/ is already gitignored)
+          # Sync files excluding private dirs
           rsync -av --delete \
             --exclude='.git' \
+            --exclude='.claude/' \
             --exclude='docs/' \
             --exclude='logs/' \
             ./ /tmp/public-repo/
